@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinta Kawaii</title>
+    <style>
+        /* Background Pink Keputuhan */
+        body {
+            background-color: #fff0f5;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animasi Hati Jatuh */
+        @keyframes fallingHeart {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: fallingHeart 5s linear infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Animasi Teks Berkedip */
+        @keyframes blink {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .love-text {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3em;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px #ffb6c1;
+            animation: blink 2s infinite;
+        }
+
+        /* Tombol Kawaii */
+        .kawaii-button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #d23d8d;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kawaii-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #d23d8d;
+        }
+
+        .kawaii-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #d23d8d;
+        }
+
+        .kawaii-button::after {
+            content: "♥";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .kawaii-button:hover::after {
+            opacity: 1;
+            top: -40px;
+        }
+
+        /* Animasi Bintang Berputar */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .star {
+            position: absolute;
+            color: #ffb6c1;
+            font-size: 30px;
+            animation: spin 8s linear infinite;
+            opacity: 0.7;
+        }
+
+        /* Efek Glitter */
+        @keyframes glitter {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .glitter {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: glitter 1.5s infinite;
+            pointer-events: none;
+        }
+
+        /* Container Kawaii */
+        .kawaii-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+            border: 3px dashed #ffb6c1;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animasi Wajah Kawaii */
+        .kawaii-face {
+            width: 120px;
+            height: 120px;
+            background-color: #ffc0cb;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+
+        .kawaii-face::before,
+        .kawaii-face::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            top: 40px;
+        }
+
+        .kawaii-face::before {
+            left: 25px;
+        }
+
+        .kawaii-face::after {
+            right: 25px;
+        }
+
+        .kawaii-face .mouth {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 0 0 20px 20px;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="kawaii-container">
+        <h1 class="love-text">I Love You! 💖</h1>
+        
+        <div class="kawaii-face">
+            <div class="mouth"></div>
+        </div>
+        
+        <button class="kawaii-button">Click for Love!</button>
+    </div>
+
+    <script>
+        // Membuat hati jatuh
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '♥';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        // Membuat glitter
+        function createGlitter() {
+            const glitter = document.createElement('div');
+            glitter.className = 'glitter';
+            glitter.style.left = Math.random() * window.innerWidth + 'px';
+            glitter.style.top = Math.random() * window.innerHeight + 'px';
+            glitter.style.width = Math.random() * 8 + 2 + 'px';
+            glitter.style.height = glitter.style.width;
+            glitter.style.animationDuration = Math.random() * 1 + 0.5 + 's';
+            document.body.appendChild(glitter);
+            
+            setTimeout(() => {
+                glitter.remove();
+            }, 1500);
+        }
+        
+        // Membuat bintang
+        function createStars() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.innerHTML = '★';
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            star.style.fontSize = Math.random() * 20 + 15 + 'px';
+            star.style.animationDuration = Math.random() * 10 + 5 + 's';
+            document.body.appendChild(star);
+        }
+        
+        // Jalankan animasi
+        setInterval(createHearts, 300);
+        setInterval(createGlitter, 100);
+        
+        // Buat beberapa bintang
+        for (let i = 0; i < 10; i++) {
+            createStars();
+        }
+
+        // Efek saat tombol diklik
+        document.querySelector('.kawaii-button').addEventListener('click', function() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createHearts();
+                }, i * 100);
+            }
+            
+            this.textContent = 'Awwww! 💕';
+            setTimeout(() => {
+                this.textContent = 'Click for Love!';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
